@@ -5,13 +5,16 @@
     "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
+
     <display-name>Temmental Example</display-name>
+
     <servlet>
-        <servlet-name>book_servlet</servlet-name>
-        <servlet-class>BookServlet</servlet-class>
+        <servlet-name>display_servlet</servlet-name>
+        <servlet-class>servlet.DisplayServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>book_servlet</servlet-name>
-        <url-pattern>/book</url-pattern>
+        <servlet-name>display_servlet</servlet-name>
+        <url-pattern>/list</url-pattern>
     </servlet-mapping>
+
 </web-app>
