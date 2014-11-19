@@ -1,0 +1,24 @@
+tr.odd {
+    background-color: #f2f2f2;
+}
+
+tr.even {
+    background-color: white;
+}
+
+tr.warning {
+    background-color: #ffffe0;
+}
+
+tr.invalid {
+    background-color: #ffe0e0;
+}
+
+tr.valid {
+    background-color: #e0ffe0;
+}
+
+img.preview {
+    width: 80px;
+    height: 60px;
+}
