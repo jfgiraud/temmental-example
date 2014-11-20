@@ -5,17 +5,16 @@
         <meta http-equiv="Pragma" content="no-cache">
         <meta http-equiv="Expires" content="0">
         
-        <link href="{{url_for('static',filename='css/bootstrap.css')}}" rel="stylesheet" type="text/css"/>
-        <link href="{{url_for('static',filename='css/bootstrap-multiselect.css')}}" rel="stylesheet" type="text/css"/>
-        <link href="{{url_for('static',filename='css/prettify.css')}}" rel="stylesheet" type="text/css"/>
-        <link href="{{url_for('static',filename='css/paginator3000.css')}}" rel="stylesheet" type="text/css"/>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="css/bootstrap-multiselect.css" rel="stylesheet" type="text/css"/>
+        <link href="css/prettify.css" rel="stylesheet" type="text/css"/>
+        <link href="css/paginator3000.css" rel="stylesheet" type="text/css"/>
 
-        <script src="{{url_for('static',filename='js/jquery-2.1.1.min.js')}}"></script>
-        <script src="{{url_for('static',filename='js/bootstrap.min.js')}}" type="text/javascript"></script>
-        <script src="{{url_for('static',filename='js/bootstrap-multiselect.js')}}" type="text/javascript"></script>
-        <script src="{{url_for('static',filename='js/prettify.js')}}" type="text/javascript"></script>
-        <script src="http://code.highcharts.com/highcharts.js"></script>
-        <script src="{{url_for('static',filename='js/paginator3000.js')}}"></script>
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap-multiselect.js" type="text/javascript"></script>
+        <script src="js/prettify.js" type="text/javascript"></script>
+        <script src="js/paginator3000.js"></script>
 
         <title>{{title}}</title>
 
@@ -172,7 +171,7 @@
                 <thead>
                     <tr>
   	                <th>date</th>
-      	                <th>photo</th>
+                    <th>photo</th>
 	                <th>description</th>
 	                <th>surface</th>
 	                <th>prix</th>
