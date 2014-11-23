@@ -1,8 +1,9 @@
 package servlet;
 
-import bean.Property;
 import service.PropertyService;
 import temmental.Template;
+import temmental.TemplateUtils;
+import temmental.Transform;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -12,10 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 public class DisplayServlet extends HttpServlet {
 
@@ -35,9 +33,26 @@ public class DisplayServlet extends HttpServlet {
         super.service(req, res);
     }
 
+
+
     private void initTemplate() throws ServletException {
         String path = getServletContext().getRealPath("annonces.tpl");
-        Map<String, ? extends Object> transforms = new HashMap<String, Object>();
+        Map<String, Object> transforms = new HashMap<String, Object>();
+
+        final Transform<String, Map<String, String>> stringToMap = new Transform<String, Map<String, String>>() {
+            public Map<String, String> apply(String s) {
+                Map<String, String> q = new HashMap<String, String>();
+                q.put("label", s);
+                return q;
+            }
+        };
+
+        transforms.put("s2m", new Transform<Object,List<Map<String,String>>>() {
+            public List<Map<String, String>> apply(Object strings) {
+                return TemplateUtils.transform((List<String>) strings, stringToMap);
+            }
+        });
+
         try {
             tpl = new Template(path, transforms, new Properties(), Locale.FRANCE);
         } catch (Exception e) {
@@ -52,9 +67,16 @@ public class DisplayServlet extends HttpServlet {
         response.addHeader("Pragma", "no-cache");
 
         PrintWriter out = response.getWriter();
-        tpl.printFile(out);
+
+        Map<String, Object> model = new HashMap<String, Object>();
+
+        final List<String> r = propertyService.getLocations();
+
+        model.put("communes", r);
+
+        tpl.printFile(out, model);
         out.flush();
-        //out.close();
     }
+
 
 }

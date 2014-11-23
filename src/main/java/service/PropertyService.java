@@ -18,4 +18,12 @@ public class PropertyService {
         }
     }
 
+    public List<String> getLocations() {
+        try {
+            return dao.getLocations();
+        } catch (SQLException e) {
+            throw new ServiceException(e);
+        }
+    }
+
 }

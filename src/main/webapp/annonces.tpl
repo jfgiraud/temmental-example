@@ -213,6 +213,12 @@
 	        </tbody>
             </table>
 
+
+                                    ~$communes:'s2m#for~
+                                       ~$label~
+                                    ~#for~
+
+
 <!--
             $(document).bind('ready', function () {
                 $('#paginator1').paginator({

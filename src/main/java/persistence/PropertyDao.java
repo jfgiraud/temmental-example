@@ -30,4 +30,23 @@ public class PropertyDao {
             SqlConnectionManager.releaseConnection(sqlConnection);
         }
     }
+
+    public List<String> getLocations() throws SQLException {
+        List<String> result = new ArrayList<String>();
+        Connection sqlConnection = SqlConnectionManager.getConnection(TEST_DB_URL);
+        try {
+            PreparedStatement st = sqlConnection.prepareStatement("select distinct commune from annonces order by commune asc");
+            try {
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    result.add(rs.getString("commune"));
+                }
+            } finally {
+                st.close();
+            }
+            return result;
+        } finally {
+            SqlConnectionManager.releaseConnection(sqlConnection);
+        }
+    }
 }
