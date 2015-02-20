@@ -17,10 +17,11 @@ public class LocationDao {
         try {
             PreparedStatement st = sqlConnection.prepareStatement("select nom_normalise, ville, code_postal from communes where nom_normalise=?");
             st.setString(1, normalizedName);
+            List<Location> result = new ArrayList<Location>();
             try {
                 ResultSet rs = st.executeQuery();
                 while (rs.next()) {
-                    result.add(rs.getString("commune"));
+                    result.add(asLocation(rs.getString("commune")));
                 }
             } finally {
                 st.close();
@@ -29,6 +30,10 @@ public class LocationDao {
         } finally {
             SqlConnectionManager.releaseConnection(sqlConnection);
         }
+    }
+
+    private Location asLocation(String normalizedName) {
+        return new Location(normalizedName, normalizedName, normalizedName.replace(".*-", ""));
     }
 
 }

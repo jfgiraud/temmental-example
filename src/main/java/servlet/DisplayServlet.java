@@ -33,8 +33,6 @@ public class DisplayServlet extends HttpServlet {
         super.service(req, res);
     }
 
-
-
     private void initTemplate() throws ServletException {
         String path = getServletContext().getRealPath("annonces.tpl");
         Map<String, Object> transforms = new HashMap<String, Object>();
