@@ -4,6 +4,6 @@ import java.util.Map;
 
 public interface AsModel {
 
-    Map<String,String> toModel();
+    Map<String,Object> toModel();
 
 }

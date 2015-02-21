@@ -181,21 +181,17 @@
 	            </tr>
 	        </thead>
 	        <tbody>
-	            {% for annonce in annonces %}
+	            ~$properties#for~
 	            <tr>
-	                <td>{% if annonce.aujourdhui %}<b>{% endif %}
-		                {{annonce.dateheure_libelle}}
-		                {% if annonce.aujourdhui %}</b>{% endif %}
+	                <td>
+		                ~$date_time~
+
 	                </td>
 	                <td class="photo">
-	                    {% if annonce.image_url %}
-	                    <a href="{{annonce.url}}"><img class="preview" src="{{annonce.image_url}}"/></a>
-	                    {% else %}
-	                    <a href="{{annonce.url}}"><img class="preview" src="{{url_for('static',filename='images/link.jpg')}}"/></a>
-	                    {% endif %}
-                        </td>
-	                <td><p><b>{{annonce.titre}}</b></p>
-                            <p>{{annonce.description}}</p>
+	                    <a href="~$url~"><img class="preview" src="~$image_url!"images/link.jpg"~"/></a>
+                    </td>
+	                <td><p><b>~$title~</b></p>
+                            <p>~$description~</p>
                             <p class="text-right">
 			        {% if annonce.site != '' %}{{annonce.site|title}}&nbsp;&nbsp;{% endif %}
                                 {% if annonce.agence != '' %}{{annonce.agence|title}}&nbsp;&nbsp;{% endif %}
@@ -211,7 +207,7 @@
 	                <td class="text-center">{{annonce.prix|fmt(precision) if (annonce.prix is defined and annonce.prix != None) else ""}}</td>
 	                <td>{% if stats_dispos %}<span href="statistiques/{{annonce.commune|urlencode}}?prix_moyen={{annonce.prix_moyen}}" data-toggle="modal" data-target="#myModal">{% endif %}{{annonce.commune|fmt('commune')}}{% if stats_dispos %}</span>{% endif %}</td> 
 	            </tr>
-	            {% endfor %}
+	            ~#for~
 	        </tbody>
             </table>
 

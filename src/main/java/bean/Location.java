@@ -27,8 +27,8 @@ public class Location implements AsModel {
         return zipCode;
     }
 
-    public Map<String,String> toModel() {
-        Map<String, String> h = new HashMap<String, String>();
+    public Map<String,Object> toModel() {
+        Map<String, Object> h = new HashMap<String, Object>();
         h.put("city", name);
         h.put("CITY", normalizedName);
         h.put("zip", zipCode);

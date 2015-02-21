@@ -2,7 +2,10 @@ package persistence;
 
 import bean.Property;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +23,10 @@ public class PropertyDao {
                 while (rs.next()) {
                     Property property = new Property();
                     property.setDescription(rs.getString("description"));
+                    property.setTitle(rs.getString("titre"));
+                    property.setDateTime(rs.getString("dateheure"));
+                    property.setImageUrl(rs.getString("image_url"));
+                    property.setUrl(rs.getString("url"));
                     result.add(property);
                 }
             } finally {

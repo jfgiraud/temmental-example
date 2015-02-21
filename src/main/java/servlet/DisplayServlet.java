@@ -2,11 +2,13 @@ package servlet;
 
 import bean.AsModel;
 import bean.Location;
+import bean.Property;
 import persistence.LocationDao;
 import service.PropertyService;
 import temmental.Template;
 import temmental.TemplateUtils;
 import temmental.Transform;
+import utils.DateUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -54,6 +56,7 @@ public class DisplayServlet extends HttpServlet {
         });
 
         try {
+            transforms.put("is_today", DateUtils.class.getDeclaredMethod("isToday", String.class, String.class));
             transforms.put("toModel", AsModel.class.getDeclaredMethod("toModel"));
             transforms.put("contains", Collection.class.getDeclaredMethod("contains", Object.class));
             tpl = new Template(path, transforms, TemplateUtils.readProperties(propertiesPath), Locale.FRANCE);
@@ -74,6 +77,12 @@ public class DisplayServlet extends HttpServlet {
 
         model.put("selected_cities", Arrays.asList("LUDON-MEDOC-33290"));
         model.put("cities", propertyService.getLocations());
+        model.put("properties", TemplateUtils.transform(propertyService.getAll(),
+                new Transform<Property, Map>() {
+                    public Map apply(Property property) {
+                        return property.toModel();
+                    }
+                }));
 
         tpl.printFile(out, model);
         out.flush();
