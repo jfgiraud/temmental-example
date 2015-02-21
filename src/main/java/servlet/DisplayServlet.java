@@ -1,5 +1,8 @@
 package servlet;
 
+import bean.AsModel;
+import bean.Location;
+import persistence.LocationDao;
 import service.PropertyService;
 import temmental.Template;
 import temmental.TemplateUtils;
@@ -13,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.*;
 
 public class DisplayServlet extends HttpServlet {
@@ -35,24 +39,24 @@ public class DisplayServlet extends HttpServlet {
 
     private void initTemplate() throws ServletException {
         String path = getServletContext().getRealPath("annonces.tpl");
+        String propertiesPath = getServletContext().getRealPath("annonces.properties");
         Map<String, Object> transforms = new HashMap<String, Object>();
 
-        final Transform<String, Map<String, String>> stringToMap = new Transform<String, Map<String, String>>() {
-            public Map<String, String> apply(String s) {
-                Map<String, String> q = new HashMap<String, String>();
-                q.put("label", s);
-                return q;
-            }
-        };
-
-        transforms.put("s2m", new Transform<Object,List<Map<String,String>>>() {
-            public List<Map<String, String>> apply(Object strings) {
-                return TemplateUtils.transform((List<String>) strings, stringToMap);
+        final LocationDao locationDao = new LocationDao();
+        transforms.put("s2loc", new Transform<String, Location>() {
+            public Location apply(String s) {
+                try {
+                    return locationDao.find(s).get(0);
+                } catch (SQLException e) {
+                    return null;
+                }
             }
         });
 
         try {
-            tpl = new Template(path, transforms, new Properties(), Locale.FRANCE);
+            transforms.put("toModel", AsModel.class.getDeclaredMethod("toModel"));
+            transforms.put("contains", Collection.class.getDeclaredMethod("contains", Object.class));
+            tpl = new Template(path, transforms, TemplateUtils.readProperties(propertiesPath), Locale.FRANCE);
         } catch (Exception e) {
             throw new ServletException(e);
         }
@@ -68,9 +72,8 @@ public class DisplayServlet extends HttpServlet {
 
         Map<String, Object> model = new HashMap<String, Object>();
 
-        final List<String> r = propertyService.getLocations();
-
-        model.put("communes", r);
+        model.put("selected_cities", Arrays.asList("LUDON-MEDOC-33290"));
+        model.put("cities", propertyService.getLocations());
 
         tpl.printFile(out, model);
         out.flush();

@@ -138,9 +138,11 @@
 		                <div class="input-group">
                                     <div class="input-group-addon">Communes</div>
 		                    <select name="commune" id="commune" multiple="multiple">
- 	                                {% for commune in communes %}
-  		                        <option value="{{commune.commune}}"{% if commune.commune in communes_selectionnees %} selected="selected"{% endif %}>{{commune.commune|fmt('commune')}}</option>
-                                        {% endfor %}
+                                ~$cities#for<'cityzip>~
+                                    ~$cityzip:'s2loc:'toModel#override~
+                                        <option value="~$cityzip~" ~$selected_cities:'contains<$cityzip>#true~selected="selected"~#true~>~'label[$city,$zip]~</option>
+                                    ~#override~
+                                ~#for~
 		                    </select>
 		                </div>
                             </div>
@@ -214,9 +216,6 @@
             </table>
 
 
-                                    ~$communes:'s2m#for~
-                                       ~$label~
-                                    ~#for~
 
 
 <!--

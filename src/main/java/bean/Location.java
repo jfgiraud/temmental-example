@@ -1,6 +1,9 @@
 package bean;
 
-public class Location {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Location implements AsModel {
 
     private String name;
     private String zipCode;
@@ -24,5 +27,11 @@ public class Location {
         return zipCode;
     }
 
-
+    public Map<String,String> toModel() {
+        Map<String, String> h = new HashMap<String, String>();
+        h.put("city", name);
+        h.put("CITY", normalizedName);
+        h.put("zip", zipCode);
+        return h;
+    }
 }
