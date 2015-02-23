@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.*;
 
 public class DisplayServlet extends HttpServlet {
@@ -56,7 +57,20 @@ public class DisplayServlet extends HttpServlet {
         });
 
         try {
-            transforms.put("is_today", DateUtils.class.getDeclaredMethod("isToday", String.class, String.class));
+            transforms.put("asint", new Transform<String,Number>() {
+                public Number apply(String s) {
+                    return Integer.parseInt(s);
+                }
+            });
+            transforms.put("is_today", new Transform<String,Boolean>() {
+                public Boolean apply(String s) {
+                    try {
+                        return DateUtils.isToday(s, "yyyy-mm-dd");
+                    } catch (ParseException e) {
+                        return false;
+                    }
+                }
+            });
             transforms.put("toModel", AsModel.class.getDeclaredMethod("toModel"));
             transforms.put("contains", Collection.class.getDeclaredMethod("contains", Object.class));
             tpl = new Template(path, transforms, TemplateUtils.readProperties(propertiesPath), Locale.FRANCE);

@@ -10,6 +10,11 @@ public class Property implements AsModel {
     private String dateTime;
     private String imageUrl;
     private String url;
+    private String area;
+    private String price;
+    private String city;
+    private String agency;
+    private String site;
 
     public String getDescription() {
         return description;
@@ -26,6 +31,11 @@ public class Property implements AsModel {
         model.put("date_time", dateTime);
         model.put("url", url);
         model.put("image_url", imageUrl);
+        model.put("area", area);
+        model.put("price", price);
+        model.put("city", city);
+        model.put("agency", agency);
+        model.put("site", site);
         return model;
     }
 
@@ -59,5 +69,41 @@ public class Property implements AsModel {
 
     public String getUrl() {
         return url;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setAgency(String agency) {
+        this.agency = agency;
+    }
+
+    public String getAgency() {
+        return agency;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
+    }
+
+    public String getSite() {
+        return site;
     }
 }

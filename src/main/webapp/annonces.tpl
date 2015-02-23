@@ -184,7 +184,9 @@
 	            ~$properties#for~
 	            <tr>
 	                <td>
-		                ~$date_time~
+		                ~$date_time:'is_today#true~<b>~#true~
+		                    ~$date_time~
+		                ~$date_time:'is_today#true~</b>~#true~
 
 	                </td>
 	                <td class="photo">
@@ -203,9 +205,9 @@
                                 {% endif %}
                                 </p>
 	                </td>
-	                <td class="text-center">{{annonce.surface|fmt('area') if (annonce.surface is defined and annonce.surface != None) else ""}}</td>
-	                <td class="text-center">{{annonce.prix|fmt(precision) if (annonce.prix is defined and annonce.prix != None) else ""}}</td>
-	                <td>{% if stats_dispos %}<span href="statistiques/{{annonce.commune|urlencode}}?prix_moyen={{annonce.prix_moyen}}" data-toggle="modal" data-target="#myModal">{% endif %}{{annonce.commune|fmt('commune')}}{% if stats_dispos %}</span>{% endif %}</td> 
+	                <td class="text-center">~$area?~</td>
+	                <td class="text-center">~'price[$price?:'asint]!~</td>
+	                <td>~$city~</td>
 	            </tr>
 	            ~#for~
 	        </tbody>

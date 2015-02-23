@@ -27,6 +27,11 @@ public class PropertyDao {
                     property.setDateTime(rs.getString("dateheure"));
                     property.setImageUrl(rs.getString("image_url"));
                     property.setUrl(rs.getString("url"));
+                    property.setArea(rs.getString("surface"));
+                    property.setPrice(rs.getString("prix"));
+                    property.setCity(rs.getString("commune"));
+                    property.setAgency(rs.getString("agence"));
+                    property.setSite(rs.getString("site"));
                     result.add(property);
                 }
             } finally {
