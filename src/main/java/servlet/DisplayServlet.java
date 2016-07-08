@@ -3,11 +3,11 @@ package servlet;
 import bean.AsModel;
 import bean.Location;
 import bean.Property;
+import com.github.jfgiraud.temmental.Template;
+import com.github.jfgiraud.temmental.TemplateUtils;
+import com.github.jfgiraud.temmental.Transform;
 import persistence.LocationDao;
 import service.PropertyService;
-import temmental.Template;
-import temmental.TemplateUtils;
-import temmental.Transform;
 import utils.DateUtils;
 
 import javax.servlet.ServletException;

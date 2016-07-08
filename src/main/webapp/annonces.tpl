@@ -4,7 +4,7 @@
         <meta http-equiv="Cache-Control" content="no-cache">
         <meta http-equiv="Pragma" content="no-cache">
         <meta http-equiv="Expires" content="0">
-        
+
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap-multiselect.css" rel="stylesheet" type="text/css"/>
         <link href="css/prettify.css" rel="stylesheet" type="text/css"/>
@@ -31,7 +31,7 @@
             }
         </style>
 
-        <script> 
+        <script>
             $(function() {
                 $('#commune').multiselect({
                     nonSelectedText: 'Aucun filtre'
@@ -71,7 +71,7 @@
 	                </button>
 	                <a class="navbar-brand logo" href="/"><img src="{{url_for('static',filename='images/'+page_logo)}}"/></a>
 	            </div>
-                    
+
 	            <!-- Collect the nav links, forms, and other content for toggling -->
 	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <form class="navbar-form navbar-left" action="{{uri}}" id="annonces" name="annonces" method="post">
@@ -146,7 +146,7 @@
 		                    </select>
 		                </div>
                             </div>
-	                    <button id="btn-submit" type="submit" class="btn btn-success">Rechercher</button> 
+	                    <button id="btn-submit" type="submit" class="btn btn-success">Rechercher</button>
 	                    <a href="{{uril}}" class="btn btn-danger">Réinitialiser</a>
                         </form>
 		        {% if stats_dispos %}
@@ -177,7 +177,7 @@
 	                <th>description</th>
 	                <th>surface</th>
 	                <th>prix</th>
-	                <th>commune</th> 
+	                <th>commune</th>
 	            </tr>
 	        </thead>
 	        <tbody>
@@ -190,7 +190,7 @@
 
 	                </td>
 	                <td class="photo">
-	                    <a href="~$url~"><img class="preview" src="~$image_url!"images/link.jpg"~"/></a>
+	                    <a href="~$url~"><img class="preview" src="~$image_url!"images/link.jpg"¡~"/></a>
                     </td>
 	                <td><p><b>~$title~</b></p>
                             <p>~$description~</p>
@@ -233,8 +233,8 @@
                 });
             });
             // -->
-           
-           
+
+
 
 
         </div>
@@ -243,15 +243,15 @@
 	    <div class="paginator" id="paginatorId"></div>
 	    <script type="text/javascript">
 	    paginatorId = new Paginator(
-	        "paginatorId", 
-		{{nb_pages}}, 
-		10, 
+	        "paginatorId",
+		{{nb_pages}},
+		10,
 		{{current_page}},
                 function(page) {
                     return page;
-                }, 
+                },
                 function() {
-                    $('#paginatorId a').click(function () { 
+                    $('#paginatorId a').click(function () {
                         var p = $(this).attr('href');
                         $('#page').attr('value', ''+p);
                         $('#annonces').submit();
@@ -278,14 +278,14 @@
 
 
 
-        
-        <script>  
-            $(function() { 
+
+        <script>
+            $(function() {
                 $('#myModal').on('hidden.bs.modal', function () {
                     $('#myModal').removeData('bs.modal')
                 })}
             )
-        </script> 
+        </script>
 
         <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">

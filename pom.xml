@@ -12,7 +12,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <jdk.version>1.5</jdk.version>
+        <jdk.version>1.8</jdk.version>
     </properties>
 
     <build>
@@ -61,6 +61,13 @@
         </plugins>
     </build>
 
+    <repositories>
+        <repository>
+            <id>jfgiraud-repo</id>
+            <url>https://github.com/jfgiraud/mvn-repo/raw/master/repository</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -74,9 +81,9 @@
             <version>3.7.15-M1</version>
         </dependency>
         <dependency>
-            <groupId>temmental</groupId>
+            <groupId>com.github.jfgiraud</groupId>
             <artifactId>temmental</artifactId>
-            <version>2.0.1-SNAPSHOT</version>
+            <version>2.0.1</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
