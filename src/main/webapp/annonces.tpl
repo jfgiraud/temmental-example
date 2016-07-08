@@ -206,7 +206,7 @@
                                 </p>
 	                </td>
 	                <td class="text-center">~$area?~</td>
-	                <td class="text-center">~'price[$price?:'asint]!~</td>
+	                <td class="text-center">~'price[$price?:'asint]!¡~</td>
 	                <td>~$city~</td>
 	            </tr>
 	            ~#for~
